@@ -15,18 +15,14 @@ package codegen
 
 import (
 	"fmt"
-
-	"github.com/getkin/kin-openapi/openapi3"
-	"github.com/pkg/errors"
-
 	"regexp"
 	"sort"
 	"strings"
 	"unicode"
-)
 
-// remove this characters in names if (only for go names)
-const specialCharactersToRemoveFromName string = "#@!$&="
+	"github.com/getkin/kin-openapi/openapi3"
+	"github.com/pkg/errors"
+)
 
 var pathParamRE *regexp.Regexp
 
@@ -60,25 +56,33 @@ func LowercaseFirstCharacter(str string) string {
 // So, "word.word-word+word:word;word_word~word word(word)word{word}[word]"
 // would be converted to WordWordWordWordWordWordWordWordWordWordWordWordWord
 func ToCamelCase(str string) string {
-	separators := []string{".", "-", "+", ":", ";", "_", "~", " ", "(", ")", "{", "}", "[", "]"}
-	in := []string{str}
-	out := make([]string, 0)
+	separators := "-#@!$&=.+:;_~ (){}[]"
+	s := strings.Trim(str, " ")
 
-	for _, sep := range separators {
-		for _, inStr := range in {
-			parts := strings.Split(inStr, sep)
-			out = append(out, parts...)
+	n := ""
+	capNext := true
+	for _, v := range s {
+		if v >= 'A' && v <= 'Z' {
+			n += string(v)
 		}
-		in = out
-		out = make([]string, 0)
-	}
+			if v >= '0' && v <= '9' {
+			n += string(v)
+		}
+		if v >= 'a' && v <= 'z' {
+			if capNext {
+				n += strings.ToUpper(string(v))
+			} else {
+				n += string(v)
+			}
+		}
 
-	words := in
-
-	for i := range words {
-		words[i] = UppercaseFirstCharacter(words[i])
+		 if strings.ContainsRune(separators, v) {
+			capNext = true
+		} else {
+			capNext = false
+		}
 	}
-	return strings.Join(words, "")
+	return n
 }
 
 // This function returns the keys of the given SchemaRef dictionary in sorted
@@ -316,9 +320,9 @@ func IsGoKeyword(str string) bool {
 // Converts a Schema name to a valid Go type name. It converts to camel case, and makes sure the name is
 // valid in Go
 func SchemaNameToTypeName(name string) string {
-	name = ToCamelCase(RemoveSpecialCharactersFromName(name))
+	name = ToCamelCase(name)
 	// Prepend "N" to schemas starting with a number
-	if unicode.IsDigit([]rune(name)[0]) {
+	if name != "" && unicode.IsDigit([]rune(name)[0]) {
 		name = "N" + name
 	}
 	return name
@@ -367,11 +371,4 @@ func StringToGoComment(in string) string {
 	// empty-line-comments, like `// `. Therefore remove this line comment.
 	in = strings.TrimSuffix(in, "\n// ")
 	return in
-}
-
-func RemoveSpecialCharactersFromName(name string) string {
-	for _, characterToRemove := range specialCharactersToRemoveFromName {
-		name = strings.ReplaceAll(name, fmt.Sprintf("%c", characterToRemove), "")
-	}
-	return name
 }
