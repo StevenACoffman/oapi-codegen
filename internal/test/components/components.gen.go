@@ -995,7 +995,7 @@ func (c *ClientWithResponses) ParamsWithAddPropsWithResponse(ctx context.Context
 	if err != nil {
 		return nil, err
 	}
-	return ParseparamsWithAddPropsResponse(rsp)
+	return ParseParamsWithAddPropsResponse(rsp)
 }
 
 // BodyWithAddPropsWithBodyWithResponse request with arbitrary body returning *BodyWithAddPropsResponse
@@ -1004,7 +1004,7 @@ func (c *ClientWithResponses) BodyWithAddPropsWithBodyWithResponse(ctx context.C
 	if err != nil {
 		return nil, err
 	}
-	return ParsebodyWithAddPropsResponse(rsp)
+	return ParseBodyWithAddPropsResponse(rsp)
 }
 
 func (c *ClientWithResponses) BodyWithAddPropsWithResponse(ctx context.Context, body BodyWithAddPropsJSONRequestBody) (*bodyWithAddPropsResponse, error) {
@@ -1012,11 +1012,11 @@ func (c *ClientWithResponses) BodyWithAddPropsWithResponse(ctx context.Context, 
 	if err != nil {
 		return nil, err
 	}
-	return ParsebodyWithAddPropsResponse(rsp)
+	return ParseBodyWithAddPropsResponse(rsp)
 }
 
-// ParseparamsWithAddPropsResponse parses an HTTP response from a ParamsWithAddPropsWithResponse call
-func ParseparamsWithAddPropsResponse(rsp *http.Response) (*paramsWithAddPropsResponse, error) {
+// ParseParamsWithAddPropsResponse parses an HTTP response from a ParamsWithAddPropsWithResponse call
+func ParseParamsWithAddPropsResponse(rsp *http.Response) (*paramsWithAddPropsResponse, error) {
 	bodyBytes, err := ioutil.ReadAll(rsp.Body)
 	defer rsp.Body.Close()
 	if err != nil {
@@ -1034,8 +1034,8 @@ func ParseparamsWithAddPropsResponse(rsp *http.Response) (*paramsWithAddPropsRes
 	return response, nil
 }
 
-// ParsebodyWithAddPropsResponse parses an HTTP response from a BodyWithAddPropsWithResponse call
-func ParsebodyWithAddPropsResponse(rsp *http.Response) (*bodyWithAddPropsResponse, error) {
+// ParseBodyWithAddPropsResponse parses an HTTP response from a BodyWithAddPropsWithResponse call
+func ParseBodyWithAddPropsResponse(rsp *http.Response) (*bodyWithAddPropsResponse, error) {
 	bodyBytes, err := ioutil.ReadAll(rsp.Body)
 	defer rsp.Body.Close()
 	if err != nil {

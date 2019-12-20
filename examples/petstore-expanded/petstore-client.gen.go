@@ -471,7 +471,7 @@ func (c *ClientWithResponses) FindPetsWithResponse(ctx context.Context, params *
 	if err != nil {
 		return nil, err
 	}
-	return ParsefindPetsResponse(rsp)
+	return ParseFindPetsResponse(rsp)
 }
 
 // AddPetWithBodyWithResponse request with arbitrary body returning *AddPetResponse
@@ -480,7 +480,7 @@ func (c *ClientWithResponses) AddPetWithBodyWithResponse(ctx context.Context, co
 	if err != nil {
 		return nil, err
 	}
-	return ParseaddPetResponse(rsp)
+	return ParseAddPetResponse(rsp)
 }
 
 func (c *ClientWithResponses) AddPetWithResponse(ctx context.Context, body AddPetJSONRequestBody) (*addPetResponse, error) {
@@ -488,7 +488,7 @@ func (c *ClientWithResponses) AddPetWithResponse(ctx context.Context, body AddPe
 	if err != nil {
 		return nil, err
 	}
-	return ParseaddPetResponse(rsp)
+	return ParseAddPetResponse(rsp)
 }
 
 // DeletePetWithResponse request returning *DeletePetResponse
@@ -497,7 +497,7 @@ func (c *ClientWithResponses) DeletePetWithResponse(ctx context.Context, id int6
 	if err != nil {
 		return nil, err
 	}
-	return ParsedeletePetResponse(rsp)
+	return ParseDeletePetResponse(rsp)
 }
 
 // FindPetByIdWithResponse request returning *FindPetByIdResponse
@@ -506,11 +506,11 @@ func (c *ClientWithResponses) FindPetByIdWithResponse(ctx context.Context, id in
 	if err != nil {
 		return nil, err
 	}
-	return ParsefindPetByIdResponse(rsp)
+	return ParseFindPetByIdResponse(rsp)
 }
 
-// ParsefindPetsResponse parses an HTTP response from a FindPetsWithResponse call
-func ParsefindPetsResponse(rsp *http.Response) (*findPetsResponse, error) {
+// ParseFindPetsResponse parses an HTTP response from a FindPetsWithResponse call
+func ParseFindPetsResponse(rsp *http.Response) (*findPetsResponse, error) {
 	bodyBytes, err := ioutil.ReadAll(rsp.Body)
 	defer rsp.Body.Close()
 	if err != nil {
@@ -540,8 +540,8 @@ func ParsefindPetsResponse(rsp *http.Response) (*findPetsResponse, error) {
 	return response, nil
 }
 
-// ParseaddPetResponse parses an HTTP response from a AddPetWithResponse call
-func ParseaddPetResponse(rsp *http.Response) (*addPetResponse, error) {
+// ParseAddPetResponse parses an HTTP response from a AddPetWithResponse call
+func ParseAddPetResponse(rsp *http.Response) (*addPetResponse, error) {
 	bodyBytes, err := ioutil.ReadAll(rsp.Body)
 	defer rsp.Body.Close()
 	if err != nil {
@@ -571,8 +571,8 @@ func ParseaddPetResponse(rsp *http.Response) (*addPetResponse, error) {
 	return response, nil
 }
 
-// ParsedeletePetResponse parses an HTTP response from a DeletePetWithResponse call
-func ParsedeletePetResponse(rsp *http.Response) (*deletePetResponse, error) {
+// ParseDeletePetResponse parses an HTTP response from a DeletePetWithResponse call
+func ParseDeletePetResponse(rsp *http.Response) (*deletePetResponse, error) {
 	bodyBytes, err := ioutil.ReadAll(rsp.Body)
 	defer rsp.Body.Close()
 	if err != nil {
@@ -596,8 +596,8 @@ func ParsedeletePetResponse(rsp *http.Response) (*deletePetResponse, error) {
 	return response, nil
 }
 
-// ParsefindPetByIdResponse parses an HTTP response from a FindPetByIdWithResponse call
-func ParsefindPetByIdResponse(rsp *http.Response) (*findPetByIdResponse, error) {
+// ParseFindPetByIdResponse parses an HTTP response from a FindPetByIdWithResponse call
+func ParseFindPetByIdResponse(rsp *http.Response) (*findPetByIdResponse, error) {
 	bodyBytes, err := ioutil.ReadAll(rsp.Body)
 	defer rsp.Body.Close()
 	if err != nil {

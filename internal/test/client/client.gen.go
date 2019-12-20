@@ -543,7 +543,7 @@ func (c *ClientWithResponses) PostBothWithBodyWithResponse(ctx context.Context, 
 	if err != nil {
 		return nil, err
 	}
-	return ParsepostBothResponse(rsp)
+	return ParsePostBothResponse(rsp)
 }
 
 func (c *ClientWithResponses) PostBothWithResponse(ctx context.Context, body PostBothJSONRequestBody) (*postBothResponse, error) {
@@ -551,7 +551,7 @@ func (c *ClientWithResponses) PostBothWithResponse(ctx context.Context, body Pos
 	if err != nil {
 		return nil, err
 	}
-	return ParsepostBothResponse(rsp)
+	return ParsePostBothResponse(rsp)
 }
 
 // GetBothWithResponse request returning *GetBothResponse
@@ -560,7 +560,7 @@ func (c *ClientWithResponses) GetBothWithResponse(ctx context.Context) (*getBoth
 	if err != nil {
 		return nil, err
 	}
-	return ParsegetBothResponse(rsp)
+	return ParseGetBothResponse(rsp)
 }
 
 // PostJsonWithBodyWithResponse request with arbitrary body returning *PostJsonResponse
@@ -569,7 +569,7 @@ func (c *ClientWithResponses) PostJsonWithBodyWithResponse(ctx context.Context, 
 	if err != nil {
 		return nil, err
 	}
-	return ParsepostJsonResponse(rsp)
+	return ParsePostJsonResponse(rsp)
 }
 
 func (c *ClientWithResponses) PostJsonWithResponse(ctx context.Context, body PostJsonJSONRequestBody) (*postJsonResponse, error) {
@@ -577,7 +577,7 @@ func (c *ClientWithResponses) PostJsonWithResponse(ctx context.Context, body Pos
 	if err != nil {
 		return nil, err
 	}
-	return ParsepostJsonResponse(rsp)
+	return ParsePostJsonResponse(rsp)
 }
 
 // GetJsonWithResponse request returning *GetJsonResponse
@@ -586,7 +586,7 @@ func (c *ClientWithResponses) GetJsonWithResponse(ctx context.Context) (*getJson
 	if err != nil {
 		return nil, err
 	}
-	return ParsegetJsonResponse(rsp)
+	return ParseGetJsonResponse(rsp)
 }
 
 // PostOtherWithBodyWithResponse request with arbitrary body returning *PostOtherResponse
@@ -595,7 +595,7 @@ func (c *ClientWithResponses) PostOtherWithBodyWithResponse(ctx context.Context,
 	if err != nil {
 		return nil, err
 	}
-	return ParsepostOtherResponse(rsp)
+	return ParsePostOtherResponse(rsp)
 }
 
 // GetOtherWithResponse request returning *GetOtherResponse
@@ -604,11 +604,11 @@ func (c *ClientWithResponses) GetOtherWithResponse(ctx context.Context) (*getOth
 	if err != nil {
 		return nil, err
 	}
-	return ParsegetOtherResponse(rsp)
+	return ParseGetOtherResponse(rsp)
 }
 
-// ParsepostBothResponse parses an HTTP response from a PostBothWithResponse call
-func ParsepostBothResponse(rsp *http.Response) (*postBothResponse, error) {
+// ParsePostBothResponse parses an HTTP response from a PostBothWithResponse call
+func ParsePostBothResponse(rsp *http.Response) (*postBothResponse, error) {
 	bodyBytes, err := ioutil.ReadAll(rsp.Body)
 	defer rsp.Body.Close()
 	if err != nil {
@@ -626,8 +626,8 @@ func ParsepostBothResponse(rsp *http.Response) (*postBothResponse, error) {
 	return response, nil
 }
 
-// ParsegetBothResponse parses an HTTP response from a GetBothWithResponse call
-func ParsegetBothResponse(rsp *http.Response) (*getBothResponse, error) {
+// ParseGetBothResponse parses an HTTP response from a GetBothWithResponse call
+func ParseGetBothResponse(rsp *http.Response) (*getBothResponse, error) {
 	bodyBytes, err := ioutil.ReadAll(rsp.Body)
 	defer rsp.Body.Close()
 	if err != nil {
@@ -645,8 +645,8 @@ func ParsegetBothResponse(rsp *http.Response) (*getBothResponse, error) {
 	return response, nil
 }
 
-// ParsepostJsonResponse parses an HTTP response from a PostJsonWithResponse call
-func ParsepostJsonResponse(rsp *http.Response) (*postJsonResponse, error) {
+// ParsePostJsonResponse parses an HTTP response from a PostJsonWithResponse call
+func ParsePostJsonResponse(rsp *http.Response) (*postJsonResponse, error) {
 	bodyBytes, err := ioutil.ReadAll(rsp.Body)
 	defer rsp.Body.Close()
 	if err != nil {
@@ -664,8 +664,8 @@ func ParsepostJsonResponse(rsp *http.Response) (*postJsonResponse, error) {
 	return response, nil
 }
 
-// ParsegetJsonResponse parses an HTTP response from a GetJsonWithResponse call
-func ParsegetJsonResponse(rsp *http.Response) (*getJsonResponse, error) {
+// ParseGetJsonResponse parses an HTTP response from a GetJsonWithResponse call
+func ParseGetJsonResponse(rsp *http.Response) (*getJsonResponse, error) {
 	bodyBytes, err := ioutil.ReadAll(rsp.Body)
 	defer rsp.Body.Close()
 	if err != nil {
@@ -683,8 +683,8 @@ func ParsegetJsonResponse(rsp *http.Response) (*getJsonResponse, error) {
 	return response, nil
 }
 
-// ParsepostOtherResponse parses an HTTP response from a PostOtherWithResponse call
-func ParsepostOtherResponse(rsp *http.Response) (*postOtherResponse, error) {
+// ParsePostOtherResponse parses an HTTP response from a PostOtherWithResponse call
+func ParsePostOtherResponse(rsp *http.Response) (*postOtherResponse, error) {
 	bodyBytes, err := ioutil.ReadAll(rsp.Body)
 	defer rsp.Body.Close()
 	if err != nil {
@@ -702,8 +702,8 @@ func ParsepostOtherResponse(rsp *http.Response) (*postOtherResponse, error) {
 	return response, nil
 }
 
-// ParsegetOtherResponse parses an HTTP response from a GetOtherWithResponse call
-func ParsegetOtherResponse(rsp *http.Response) (*getOtherResponse, error) {
+// ParseGetOtherResponse parses an HTTP response from a GetOtherWithResponse call
+func ParseGetOtherResponse(rsp *http.Response) (*getOtherResponse, error) {
 	bodyBytes, err := ioutil.ReadAll(rsp.Body)
 	defer rsp.Body.Close()
 	if err != nil {

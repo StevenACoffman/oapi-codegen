@@ -254,11 +254,11 @@ func (c *ClientWithResponses) ExampleGetWithResponse(ctx context.Context) (*exam
 	if err != nil {
 		return nil, err
 	}
-	return ParseexampleGetResponse(rsp)
+	return ParseExampleGetResponse(rsp)
 }
 
-// ParseexampleGetResponse parses an HTTP response from a ExampleGetWithResponse call
-func ParseexampleGetResponse(rsp *http.Response) (*exampleGetResponse, error) {
+// ParseExampleGetResponse parses an HTTP response from a ExampleGetWithResponse call
+func ParseExampleGetResponse(rsp *http.Response) (*exampleGetResponse, error) {
 	bodyBytes, err := ioutil.ReadAll(rsp.Body)
 	defer rsp.Body.Close()
 	if err != nil {

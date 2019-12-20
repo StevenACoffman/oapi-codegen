@@ -63,7 +63,7 @@ func TestExamplePetStoreParseFunction(t *testing.T) {
 	}
 	cannedResponse.Header.Add("Content-type", "application/json")
 
-	findPetByIDResponse, err := examplePetstoreClient.ParsefindPetByIdResponse(cannedResponse)
+	findPetByIDResponse, err := examplePetstoreClient.ParseFindPetByIdResponse(cannedResponse)
 	assert.NoError(t, err)
 	assert.NotNil(t, findPetByIDResponse.JSON200)
 	assert.Equal(t, int64(5), findPetByIDResponse.JSON200.Id)
@@ -118,7 +118,7 @@ type getTestByNameResponse struct {
 	// Check that the helper methods are generated correctly:
 	assert.Contains(t, code, "func (r getTestByNameResponse) Status() string {")
 	assert.Contains(t, code, "func (r getTestByNameResponse) StatusCode() int {")
-	assert.Contains(t, code, "func ParsegetTestByNameResponse(rsp *http.Response) (*getTestByNameResponse, error) {")
+	assert.Contains(t, code, "func ParseGetTestByNameResponse(rsp *http.Response) (*getTestByNameResponse, error) {")
 
 	// Check the client method signatures:
 	assert.Contains(t, code, "type GetTestByNameParams struct {")
